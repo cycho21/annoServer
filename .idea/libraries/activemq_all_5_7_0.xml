@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="activemq-all-5.7.0">
+    <CLASSES>
+      <root url="jar://F:/uima-as-2.6.0-bin/apache-uima-as-2.6.0/apache-activemq/activemq-all-5.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
