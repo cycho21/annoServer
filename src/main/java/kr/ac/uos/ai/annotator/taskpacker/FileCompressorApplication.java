@@ -1,4 +1,4 @@
-package kr.ac.uos.ai.annotator.filecompressor;
+package kr.ac.uos.ai.annotator.taskpacker;
 
 import org.junit.Test;
 
@@ -21,7 +21,6 @@ public class FileCompressorApplication {
 	}
 
 	public Compressor getCompressor() {
-
 		return compressor;
 	}
 	

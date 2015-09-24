@@ -2,8 +2,8 @@ package kr.ac.uos.ai.annotator;
 
 import kr.ac.uos.ai.annotator.activemq.ActiveMQManager;
 import kr.ac.uos.ai.annotator.activemq.Sender;
-import kr.ac.uos.ai.annotator.filecompressor.Compressor;
-import kr.ac.uos.ai.annotator.filecompressor.FileCompressorApplication;
+import kr.ac.uos.ai.annotator.taskpacker.Compressor;
+import kr.ac.uos.ai.annotator.taskpacker.FileCompressorApplication;
 import kr.ac.uos.ai.annotator.filemover.FileMaker;
 import kr.ac.uos.ai.annotator.filemover.FileMoverApplication;
 

@@ -1,4 +1,4 @@
-package kr.ac.uos.ai.annotator.filecompressor;
+package kr.ac.uos.ai.annotator.taskpacker;
 
 import kr.ac.uos.ai.annotator.filemover.FileMaker;
 import org.junit.After;
