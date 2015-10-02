@@ -1,6 +1,6 @@
 package kr.ac.uos.ai.annotator.taskpacker;
 
-import kr.ac.uos.ai.annotator.filemover.FileMaker;
+import kr.ac.uos.ai.annotator.taskdistributor.ByteGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,28 +17,28 @@ import java.util.zip.ZipEntry;
 /*
  * This class is written by Chan Yeon, Cho
  * AI-Laboratory, Seoul, Korea
- * 2015. 9. 14. 오후 1:25:25
+ * 2015. 9. 14.
  */
 
-public class Compressor {
+public class TaskPacker {
 
-	private String tempJarPath;
+	private String packedJar;
 	private FileOutputStream fout;
 	private JarOutputStream jarOut;
 	private byte[] data;
 
-	public Compressor() {
+	public TaskPacker() {
 		
 	}
 
-	public void setTempJarFilePath(String tempJarFilePath) {
-		this.tempJarPath = tempJarFilePath;
+	public void setTempJarFilePath(String packedJarFilePath) {
+		this.packedJar = packedJarFilePath;
 	}
 	
 
 	public void init() {
 		try {
-			fout = new FileOutputStream(tempJarPath);
+			fout = new FileOutputStream(packedJar);
 			jarOut = new JarOutputStream(fout);
 		} catch (FileNotFoundException e) {
 			System.out.println("Make FileOutputStream Failed");
@@ -112,7 +112,7 @@ public class Compressor {
 
 	public void byte2File(String outputFilePath) {
 		byte[] byteAraay = data;
-		FileMaker fm = new FileMaker();
+		ByteGenerator fm = new ByteGenerator();
 		fm.init();
 		fm.makeFileFromByteArray(outputFilePath, byteAraay);
 	}
@@ -120,7 +120,7 @@ public class Compressor {
 	@Test
 	public void test3() {
 		byte[] byteArray = data;
-		FileMaker fM = new FileMaker();
+		ByteGenerator fM = new ByteGenerator();
 		fM.init();
 		fM.makeFileFromByteArray("F:/jartest/ClientTest/asdf.jar", byteArray);
 	}

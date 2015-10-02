@@ -2,10 +2,10 @@ package kr.ac.uos.ai.annotator;
 
 import kr.ac.uos.ai.annotator.activemq.ActiveMQManager;
 import kr.ac.uos.ai.annotator.activemq.Sender;
-import kr.ac.uos.ai.annotator.taskpacker.Compressor;
-import kr.ac.uos.ai.annotator.taskpacker.FileCompressorApplication;
-import kr.ac.uos.ai.annotator.filemover.FileMaker;
-import kr.ac.uos.ai.annotator.filemover.FileMoverApplication;
+import kr.ac.uos.ai.annotator.taskdistributor.ByteGenerator;
+import kr.ac.uos.ai.annotator.taskpacker.TaskPacker;
+import kr.ac.uos.ai.annotator.taskpacker.TaskPackerCore;
+import kr.ac.uos.ai.annotator.taskdistributor.TaskDistributorCore;
 
 /**
  * Created by HentaiMaster on 2015-09-16.
@@ -13,9 +13,9 @@ import kr.ac.uos.ai.annotator.filemover.FileMoverApplication;
 public class Application {
 
     private ActiveMQManager amqm;
-    private FileMaker fmaker;
+    private ByteGenerator fmaker;
     private Sender sdr;
-    private Compressor compressor;
+    private TaskPacker taskPacker;
 
     public Application() {
         makeSender();
@@ -28,22 +28,22 @@ public class Application {
 
     /*
          *  ActiveMQManager
-         *  FileMaker
-         *  Compressor
+         *  ByteGenerator
+         *  TaskPacker
      */
     private void startApplication() {
-        FileCompressorApplication fca = new FileCompressorApplication();
-        FileMoverApplication fma = new FileMoverApplication();
+        TaskPackerCore fca = new TaskPackerCore();
+        TaskDistributorCore fma = new TaskDistributorCore();
         fca.init();
         fma.init();
         amqm = fma.getActiveMQManager();
         amqm.init("FileTest");
         fmaker = fma.getFileMaker();
         fmaker.init();
-        compressor = fca.getCompressor();
-        compressor.makeTempJar("F:/jartest/testJar.jar");
+        taskPacker = fca.getCompressor();
+        taskPacker.makeTempJar("F:/jartest/testJar.jar");
 
-        byte[] tempByte = compressor.file2Byte("F:/jartest/testJar.jar");
+        byte[] tempByte = taskPacker.file2Byte("F:/jartest/testJar.jar");
         sdr.sendMessage(tempByte);
     }
 

@@ -1,4 +1,4 @@
-package kr.ac.uos.ai.annotator.filemover;
+package kr.ac.uos.ai.annotator.taskdistributor;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,19 +7,21 @@ import java.io.IOException;
 /*
  * This class is written by Chan Yeon, Cho
  * AI-Laboratory, Seoul, Korea
- * 2015. 9. 15. 오후 2:51:47
+ * 2015. 9. 15.
  */
 
-public class FileMaker {
+public class ByteGenerator {
 
-    public FileMaker() {
-
+    public ByteGenerator() {
     }
 
     public void init() {
-
     }
 
+    /**
+     * @param pathName
+     * @param byteArray
+     */
     public void makeFileFromByteArray(String pathName, byte[] byteArray) {
         FileOutputStream fos;
         try {
