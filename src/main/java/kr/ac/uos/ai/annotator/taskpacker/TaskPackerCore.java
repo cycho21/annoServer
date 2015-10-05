@@ -10,17 +10,15 @@ import org.junit.Test;
 
 public class TaskPackerCore {
 	
-	private static TaskPacker taskPacker;
-	
+
 	public TaskPackerCore() {
-		init();
 	}
 
 	public void init() {
-		taskPacker = new TaskPacker();
 	}
 
-	public TaskPacker getCompressor() {
+	public TaskPacker getPacker() {
+		TaskPacker taskPacker = new TaskPacker();
 		return taskPacker;
 	}
 	

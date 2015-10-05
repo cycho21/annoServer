@@ -34,5 +34,4 @@ public class ByteGenerator {
             System.out.println("Byte array error");
         }
     }
-
 }
