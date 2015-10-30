@@ -8,4 +8,7 @@ package kr.ac.uos.ai.annotator.requestanalyst;
 
 public class RequestAnalyst {
 
+    public RequestAnalyst() {
+    }
+
 }

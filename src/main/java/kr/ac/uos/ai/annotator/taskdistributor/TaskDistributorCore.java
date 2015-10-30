@@ -1,6 +1,7 @@
 package kr.ac.uos.ai.annotator.taskdistributor;
 
 import kr.ac.uos.ai.annotator.activemq.ActiveMQManager;
+import kr.ac.uos.ai.annotator.taskarchiver.TaskUnpacker;
 
 /*
  * This class is written by Chan Yeon, Cho
@@ -25,11 +26,11 @@ public class TaskDistributorCore {
 		}
 
     /**
-     * @return return object of ByteGenerator
+     * @return return object of TaskUnpacker
      */
-	public ByteGenerator getFileMaker() {
-	    ByteGenerator byteGenerator = new ByteGenerator();
-	    return byteGenerator;
+	public TaskUnpacker getFileMaker() {
+	    TaskUnpacker taskUnpacker = new TaskUnpacker();
+	    return taskUnpacker;
 	}
 
     /**

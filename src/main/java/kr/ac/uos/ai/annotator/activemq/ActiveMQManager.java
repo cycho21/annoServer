@@ -1,5 +1,7 @@
 package kr.ac.uos.ai.annotator.activemq;
 
+import java.util.ArrayList;
+
 public class ActiveMQManager {
 
 	private String mqueueName;
@@ -15,9 +17,6 @@ public class ActiveMQManager {
 		receiver.init();
 		Thread receiverThread = new Thread(receiver);
 		receiverThread.start();
-		/*
-		* alfkdjhasfkdlhasfkdljashfdljskadhfljsdahfljskdhlajfdhajkd
-		 */
 	}
 
 	public String getMqueueName() {

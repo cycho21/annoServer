@@ -2,9 +2,10 @@ package kr.ac.uos.ai.annotator;
 
 import kr.ac.uos.ai.annotator.activemq.ActiveMQManager;
 import kr.ac.uos.ai.annotator.activemq.Sender;
-import kr.ac.uos.ai.annotator.taskdistributor.ByteGenerator;
-import kr.ac.uos.ai.annotator.taskpacker.TaskPacker;
-import kr.ac.uos.ai.annotator.taskpacker.TaskPackerCore;
+import kr.ac.uos.ai.annotator.taskarchiver.TaskUnpacker;
+import kr.ac.uos.ai.annotator.taskdistributor.TaskDistributor;
+import kr.ac.uos.ai.annotator.taskarchiver.TaskPacker;
+import kr.ac.uos.ai.annotator.taskarchiver.TaskArchiverCore;
 import kr.ac.uos.ai.annotator.taskdistributor.TaskDistributorCore;
 
 /**
@@ -13,9 +14,10 @@ import kr.ac.uos.ai.annotator.taskdistributor.TaskDistributorCore;
 public class Application {
 
     private ActiveMQManager amqm;
-    private ByteGenerator fmaker;
+    private TaskUnpacker fmaker;
     private Sender sdr;
     private TaskPacker taskPacker;
+    private TaskDistributor tdr;
 
     public Application() {
         makeSender();
@@ -28,22 +30,25 @@ public class Application {
 
     /*
          *  ActiveMQManager
-         *  ByteGenerator
+         *  TaskUnpacker
          *  TaskPacker
      */
     private void startApplication() {
-        TaskPackerCore fca = new TaskPackerCore();
+        TaskArchiverCore fca = new TaskArchiverCore();
         TaskDistributorCore fma = new TaskDistributorCore();
+        TaskUnpacker unpacker = new TaskUnpacker();
+
+        tdr = fma.getTaskDistributor();
         fca.init();
         fma.init();
         amqm = fma.getActiveMQManager();
         amqm.init("FileTest");
         fmaker = fma.getFileMaker();
         fmaker.init();
-        taskPacker = fca.getCompressor();
-        taskPacker.makeTempJar("F:/jartest/testJar.jar");
+        taskPacker = fca.getPacker();
+        taskPacker.packTask("F:/jartest/testJar33.jar");
 
-        byte[] tempByte = taskPacker.file2Byte("F:/jartest/testJar.jar");
+        byte[] tempByte = taskPacker.file2Byte("F:/jartest/testJar33.jar");
         sdr.sendMessage(tempByte);
     }
 

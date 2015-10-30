@@ -1,4 +1,4 @@
-package kr.ac.uos.ai.annotator.taskdistributor;
+package kr.ac.uos.ai.annotator.taskarchiver;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,9 +10,9 @@ import java.io.IOException;
  * 2015. 9. 15.
  */
 
-public class ByteGenerator {
+public class TaskUnpacker {
 
-    public ByteGenerator() {
+    public TaskUnpacker() {
     }
 
     public void init() {
@@ -34,5 +34,4 @@ public class ByteGenerator {
             System.out.println("Byte array error");
         }
     }
-
 }
