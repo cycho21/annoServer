@@ -27,6 +27,7 @@ public class TaskPacker {
 	private JarOutputStream jarOut;
 	private byte[] data;
 	private ArrayList<String> entryList;
+	private String tempJarFilePath;
 
 	public TaskPacker() {
 	}
@@ -142,5 +143,9 @@ public class TaskPacker {
 
 	public void setPackedTaskPath(String packedJarFilePath) {
 		this.packedJarPath = packedJarFilePath;
+	}
+
+	public void setTempJarFilePath(String tempJarFilePath) {
+		this.tempJarFilePath = tempJarFilePath;
 	}
 }
