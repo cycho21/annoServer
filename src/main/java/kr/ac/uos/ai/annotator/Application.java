@@ -44,8 +44,11 @@ public class Application {
         amqm = fma.getActiveMQManager();
         amqm.init("FileTest");
         fmaker = fma.getFileMaker();
-        fmaker.init();
         taskPacker = fca.getPacker();
+        taskPacker.setPackedTaskPath("F:/jartest/testJar33.jar");
+        taskPacker.init();
+        taskPacker.addTaskElement("kr/ac/uos/ai/annotator/activemq/Sender.class");
+        taskPacker.addTaskElement("kr/ac/uos/ai/annotator/activemq/Receiver.class");
         taskPacker.packTask("F:/jartest/testJar33.jar");
 
         byte[] tempByte = taskPacker.file2Byte("F:/jartest/testJar33.jar");

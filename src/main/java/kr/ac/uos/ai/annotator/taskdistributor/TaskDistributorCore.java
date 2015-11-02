@@ -11,34 +11,38 @@ import kr.ac.uos.ai.annotator.taskarchiver.TaskUnpacker;
 
 public class TaskDistributorCore {
 
+	private ActiveMQManager activemqManager;
+
 	public TaskDistributorCore() {
 	}
-	
+
 	public void init() {
 	}
 
-    /**
-     * @return return object of ActiveMQManager
-     */
-    public ActiveMQManager getActiveMQManager() {
-	    ActiveMQManager activemqManager = new ActiveMQManager();
-	    return activemqManager;
+	/**
+	 * @return return object of ActiveMQManager
+	 */
+	public ActiveMQManager getActiveMQManager() {
+		if(activemqManager==null) {
+			activemqManager = new ActiveMQManager();
 		}
-
-    /**
-     * @return return object of TaskUnpacker
-     */
-	public TaskUnpacker getFileMaker() {
-	    TaskUnpacker taskUnpacker = new TaskUnpacker();
-	    return taskUnpacker;
+		return activemqManager;
 	}
 
-    /**
-     * @return return object of TaskDistributor
-     */
+	/**
+	 * @return return object of TaskUnpacker
+	 */
+	public TaskUnpacker getFileMaker() {
+		TaskUnpacker taskUnpacker = new TaskUnpacker();
+		return taskUnpacker;
+	}
+
+	/**
+	 * @return return object of TaskDistributor
+	 */
 	public TaskDistributor getTaskDistributor() {
-	    TaskDistributor taskDistributor = new TaskDistributor();
-        return taskDistributor;
+		TaskDistributor taskDistributor = new TaskDistributor();
+		return taskDistributor;
 	}
 
 }

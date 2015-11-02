@@ -18,15 +18,18 @@ import java.util.HashMap;
 
 public class MetaInfo {
 
-    private HashMap<PropertyType, String> propertyMap;
+    private HashMap<String, String> propertyMap;
 
     public MetaInfo(String author, MsgType msg, String msgTime) {
-        this.propertyMap.put(PropertyType.AUTHOR, author);
-        this.propertyMap.put(PropertyType.MSGTYPE, msg.toString().toLowerCase());
-        this.propertyMap.put(PropertyType.MSGTIME, msgTime);
+
+        propertyMap = new HashMap<String, String>();
+
+        propertyMap.put(PropertyType.AUTHOR.toString(), author);
+        propertyMap.put(PropertyType.MSGTYPE.toString(), msg.toString().toLowerCase());
+        propertyMap.put(PropertyType.MSGTIME.toString(), msgTime);
     }
 
-    public HashMap<PropertyType, String> getPropertyMap() {
+    public HashMap<String, String> getPropertyMap() {
         return propertyMap;
     }
 

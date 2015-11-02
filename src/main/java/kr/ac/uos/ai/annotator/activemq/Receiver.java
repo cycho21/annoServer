@@ -1,9 +1,12 @@
 package kr.ac.uos.ai.annotator.activemq;
 
+import kr.ac.uos.ai.annotator.bean.Task;
+import kr.ac.uos.ai.annotator.bean.type.PropertyType;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
+import java.util.HashMap;
 
 public class Receiver implements Runnable {
 
@@ -42,15 +45,13 @@ public class Receiver implements Runnable {
 				consume();
 				BytesMessage tMsg = (BytesMessage) message;
 				byte[] bytes = new byte[(int) ((BytesMessage) message).getBodyLength()];
+				HashMap task = (HashMap) message.getObjectProperty("objectPropertyTest");
+				System.out.println("Receiver AUTHOR : " + task.get("AUTHOR"));
 				tMsg.readBytes(bytes);
 				System.out.println(bytes);
 				for (byte b : bytes) {
 					System.out.println((char) b);
 				}
-//
-//				for (byte s : bytes) {
-//					System.out.println(s);
-//				}
 			}
 		} catch (Exception e) {
 				System.out.println("Receiver Run Error");

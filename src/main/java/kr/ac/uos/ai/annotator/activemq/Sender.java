@@ -1,9 +1,12 @@
 package kr.ac.uos.ai.annotator.activemq;
 
+import kr.ac.uos.ai.annotator.bean.Task;
+import kr.ac.uos.ai.annotator.bean.type.MsgType;
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
+import java.util.HashMap;
 
 public class Sender {
 	private ActiveMQConnectionFactory factory;
@@ -44,12 +47,25 @@ public class Sender {
 		}
 	}
 
+    public void sendMessage(String msg) {
+        try {
+            Message message = session.createMessage();
+            producer.send(message);
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+    }
+    
 	public void sendMessage(byte[] msg) {
 		BytesMessage message;
 		try {
 			message = session.createBytesMessage();
 			message.writeBytes(msg);
-			producer.send(message);
+			Task task = new Task("chan8", MsgType.INFO, "test_time");
+            HashMap inTask = task.getMetaInfo().getPropertyMap();
+			message.setObjectProperty("objectPropertyTest", inTask);
+            System.out.println(inTask.get("AUTHOR"));
+            producer.send(message);
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}

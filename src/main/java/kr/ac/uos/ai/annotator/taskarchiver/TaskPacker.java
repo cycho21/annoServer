@@ -73,8 +73,6 @@ public class TaskPacker {
 
 
 	public void packTask(String outputFilePath) {
-		setPackedTaskPath(outputFilePath);
-		init();
         entryAnalysis();
 		try {
 			jarOut.close();
